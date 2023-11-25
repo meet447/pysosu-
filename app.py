@@ -30,7 +30,7 @@ class Circle(pygame.Vector2):
             pygame.draw.circle(screen, "white", (int(circle.x), int(circle.y)), int(circle.radius))
         
 def load_beatmap(filename):
-    with open(filename, 'r') as file:
+    with open("json/"+filename, 'r') as file:
         beatmap_data = json.load(file)
     return beatmap_data
 
@@ -148,7 +148,7 @@ while True:
         while remaining_positions:
             if current_time - spawn_time >= beatmap_data['circle_spawn_interval']:
                 position = remaining_positions.pop(0)  # Pop the first position from the list
-                circles.append(spawn_circle(position))
+                circles.append(Circle.spawn_circle(position))
                 spawn_time = current_time
             else:
                 # No need to continue checking if the time interval is not met
