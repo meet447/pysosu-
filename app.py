@@ -21,18 +21,19 @@ class Circle(pygame.Vector2):
         super().__init__(x, y)
         self.radius = radius
 
-# Function to spawn a circle
-def spawn_circle(position):
-    return Circle(position[0], position[1], circle_size)
+    # Function to spawn a circle
+    def spawn_circle(position):
+        return Circle(position[0], position[1], circle_size)
 
+    def draw_circles(circles):
+        for circle in circles:
+            pygame.draw.circle(screen, "white", (int(circle.x), int(circle.y)), int(circle.radius))
+        
 def load_beatmap(filename):
     with open(filename, 'r') as file:
         beatmap_data = json.load(file)
     return beatmap_data
 
-def draw_circles(circles):
-    for circle in circles:
-        pygame.draw.circle(screen, "white", (int(circle.x), int(circle.y)), int(circle.radius))
 
 class Menu:
     def __init__(self, screen, clock):
